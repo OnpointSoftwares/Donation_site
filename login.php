@@ -49,24 +49,24 @@ session_start();
 
             // Rudimentary hash check
             $result = password_verify($_POST['Password'], $Password);
-            $conn=mysqli_connect('localhost','root','','seatbook');
+            $conn=mysqli_connect('localhost','root','','Donation_site');
 $username=$_POST['Username'];
 $password=$_POST['Password'];
-$sql="select * from login where username='$username' and password='$password'";
+$sql="select * from login where username='$username' and password='$password' and role='donor'";
 $query=mysqli_query($conn,$sql);
 $count=mysqli_num_rows($query);
 $row1=mysqli_fetch_assoc($query);
 $level=$row1['Level'];
             /* Check if form's username and password matches */
             if($count==1) {
-
+                session_start();
                 /* Success: Set session variables and redirect to protected page */
-                $_SESSION['Username'] = $username;
+                $_SESSION['login'] = $username;
 
                 $_SESSION['Active'] = true;
                 if($level==0)
                 {
-                header("location:index.php");
+                header("location:donation.php");
                 exit;
 }
 else if($level==1)

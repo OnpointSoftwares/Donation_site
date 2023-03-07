@@ -63,8 +63,12 @@
     <div class="product">
         <h2>HOW TO HELP</h2>
         <div class="product_container">
-
-            <div class="item">
+            <?php
+            $conn=mysqli_connect("localhost","root","","Donation_site");
+            $query=mysqli_query($conn,"select * from projects");
+            while($row=mysqli_fetch_assoc($query))
+            {
+            echo '<div class="item">
                 <div class="item_img">
                     <img src="images/money.svg">
                 </div>
@@ -73,29 +77,9 @@
                     <p>We donate money to needy children.</p>
                     <br><br><br>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="item_img">
-                    
-                </div>
-                <div class="item_content">
-                    <h3></h3><br>
-                    <p></p>
-                    <br><br>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="item_img">
-                    
-                </div>
-                <div class="item_content">
-                    <h3>Target</h3><br>
-                    <p>Reach to the needy people in the world</p>
-                    <br><br>
-                </div>
-            </div>
+            </div>';
+            }
+?>
         </div>
     </div>
     <hr>

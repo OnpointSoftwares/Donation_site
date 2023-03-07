@@ -50,10 +50,10 @@ session_start();
 
             // Rudimentary hash check
             $result = password_verify($_POST['Password'], $Password);
-            $conn=mysqli_connect('localhost','root','','seatbook');
+            $conn=mysqli_connect('localhost','root','','Donation_site');
 $username=$_POST['Username'];
 $password=$_POST['Password'];
-$sql="insert into login(username,password) values('$username','$password')";
+$sql="insert into login(username,password,role) values('$username','$password','donor')";
 $query=mysqli_query($conn,$sql);
             /* Check if form's username and password matches */
             if($query) {

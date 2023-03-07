@@ -59,7 +59,6 @@ $row1=mysqli_fetch_assoc($query);
 $level=$row1['Level'];
             /* Check if form's username and password matches */
             if($count==1) {
-                session_start();
                 /* Success: Set session variables and redirect to protected page */
                 $_SESSION['login'] = $username;
 

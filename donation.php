@@ -1,390 +1,297 @@
-<head>
-	<?php
-	include_once "session.php";
-	?>
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
-<style>
-    .donation-container {
-	height: 1000px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 500;
-	font-size: 12px;
-	text-transform: uppercase;
-	margin-top: 30px;
-}
-
-.donation-box {
-	width: 90%;
-	height: 386px;
-	background-color: rgb(216, 13, 74);
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	
-	-webkit-transition: all 0.15s ease-out;
-	-moz-transition: all 0.15s ease-out;
-	-o-transition: all 0.15s ease-out;
-	transition: all 0.15s ease-out;
-}
-
-.donation-box .title {
-	background-color: rgb(216, 13, 74);
-	width: 100%;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	color: white;
-	text-align: center;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	font-size: 15px;
-}
-
-.donation-box .donate-button {
-	background-color: #C1D82F;
-	width: 100%;
-	color: white;
-	text-align: center;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	font-size: 18px;
-	bottom: 0px;
-	position: absolute;
-	cursor: pointer;
-	font-weight: 800;
-}
-
-.donation-box .fields {
-	width: 59%;
-	display: block;
-	position: absolute;
-	top: 60px;
-	left: 15px;
-}
-
-.donation-box .fields input {
-	width: 90%;
-	font-size: 17px;
-	padding: 10px;
-	border-radius: 4px;
-	border-width: 0px;
-	color: #5C5C5C;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 500;
-	margin-bottom: 10px;
-	-webkit-font-smoothing: antialiased;
-}
-
-::-webkit-input-placeholder {
-   color: #cdcdcd;
-   font-size: 15px;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: #cdcdcd;
-   font-size: 15px;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #cdcdcd;
-   font-size: 15px; 
-}
-
-:-ms-input-placeholder {  
-   color: #cdcdcd;
-   font-size: 15px;
-}
-
-.donation-box .amount {
-	width: 30%;
-	display: block;
-	position: absolute;
-	top: 60px;
-	right: 15px;
-}
-
-.donation-box .amount .button {
-	width: 100%;
-	background-color: gray;
-	margin-bottom: 10px;
-	text-align: center;
-	color: white;
-	padding: 15px 0px 15px 0px;
-	border-radius: 4px;
-	font-size: 20px;
-	cursor: pointer;
-	
-	-webkit-transition: 400ms background-color;
-	-moz-transition: 800ms opacity, 800ms right;
-	-ms-transition: 800ms opacity, 800ms right;
-	-o-transition: 800ms opacity, 800ms right;
-	transition: 200ms background-color;
-}
-
-.donation-box .amount .button:hover {
-	background-color:rgb(216, 13, 74);
-}
-
-.donation-box .amount .button.selected {
-	background-color: #393939;
-}
-
-.donation-box .amount .button input {
-	min-width: 34px;
-	font-size: 20px;
-	font-weight: 500;
-	border: none;
-	background-color: transparent;
-	color: white;
-	font-family: Montserrat, sans-serif;
-	font-size: 20px;
-	font-stretch: normal;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	border-bottom: 2px dashed white;
-	-webkit-font-smoothing: antialiased;
-	
-	-webkit-transition: all 0.15s ease-out;
-	-moz-transition: all 0.15s ease-out;
-	-o-transition: all 0.15s ease-out;
-	transition: all 0.15s ease-out;
-}
-
-.set-amount {
-	max-width: 96px;
-}
-
-.switch {
-  position: absolute;
-  top: 190px;
-  left: 15px;
-  margin: 20px auto;
-  height: 26px;
-  width: 58.5%;
-  background: white;
-  border-radius: 3px;
-}
-
-.switch-label {
-  position: relative;
-  z-index: 2;
-  float: left;
-  width: 49%;
-  line-height: 26px;
-  font-size: 11px;
-  color: #5C5C5C;
-  text-align: center;
-  cursor: pointer;
-  font-weight: bold;
-}
-.switch-label:active {
-  font-weight: bold;
-}
-
-.switch-label-off {
-  padding-left: 2px;
-}
-
-.switch-label-on {
-  padding-right: 2px;
-}
-
-.switch-input {
-  display: none;
-}
-.switch-input:checked + .switch-label {
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.65);
-  
-  -webkit-transition: 0.15s ease-out;
-  -moz-transition: 0.15s ease-out;
-  -o-transition: 0.15s ease-out;
-  transition: 0.15s ease-out;
-}
-.switch-input:checked + .switch-label-on ~ .switch-selection {
-  left: 114px;
-}
-
-.switch-selection {
-  display: block;
-  position: absolute;
-  z-index: 1;
-  top: 2px;
-  left: 2px;
-  width: 49%;
-  height: 22px;
-  background: #65bd63;
-  border-radius: 3px;
-  background-color: #C1D82F;
-  
-  -webkit-transition: left 0.15s ease-out;
-  -moz-transition: left 0.15s ease-out;
-  -o-transition: left 0.15s ease-out;
-  transition: left 0.15s ease-out;
-}
-
-.checkboxes {
-	position: absolute;
-	top: 242px;
-	left: 13px;
-}
-
-.checkboxes label {
-	position: relative;
-	top: -8px;
-	font-size: 13px;
-	color: gray;
-}
-
-.checkbox {
-	-webkit-appearance: none;
-	background-color: #fafafa;
-	border: 1px solid #C1D82F;
-	padding: 9px;
-	border-radius: 3px;
-	display: inline-block;
-	position: relative;
-	
-	-webkit-transition: all 0.15s ease-out;
-	-moz-transition: all 0.15s ease-out;
-	-o-transition: all 0.15s ease-out;
-	transition: all 0.15s ease-out;
-}
-
-.checkbox:active, .checkbox:checked:active {
-	
-}
-
-.checkbox:checked {
-	background-color: #C1D82F;
-	border: 1px solid #C1D82F;
-	color: white;
-}
-
-.checkbox:checked:after {
-	content: '\2714';
-	font-size: 14px;
-	position: absolute;
-	top: 0px;
-	left: 3px;
-	color: white;
-}
-
-.confirm {
-	display: none;
-	position: absolute;
-	top: 335px;
-	left: 15px;
-	right: 15px;
-	font-size: 16px;
-	
-	-webkit-transition: all 0.15s ease-out;
-	-moz-transition: all 0.15s ease-out;
-	-o-transition: all 0.15s ease-out;
-	transition: all 0.15s ease-out;
-}
-
-.confirm i {
-	font-weight: bold;
-	text-decoration: underline;
-	font-style: normal;
-}
-</style>
-    </head>
-<body>
-<div class="donation-container">
-            
-            <div class="donation-box">
-	            <div class="title">Donation Information</div>
-	            
-	            <div class="fields">
-				
-		            <input type="text" id="firstName" placeholder="First Name"> </input>
-		            <input type="text" id="lastName" placeholder="Last Name"> </input>
-		            <input type="text" id="email" placeholder="Email"> </input>
-					
-					</div>
-	            <div class="amount">
-		            <div class="button">KSH<input type="text" class="set-amount" placeholder=""> </input></div>
-	            </div>
-	            
-	            <div class="switch">
-					<input type="radio" class="switch-input" name="view" value="One-Time" id="one-time" checked="">
-					<label for="one-time" class="switch-label switch-label-off">One-Time</label>
-					<input type="radio" class="switch-input" name="view" value="Monthly" id="monthly">
-					<label for="monthly" class="switch-label switch-label-on">Monthly</label>
-					<span class="switch-selection"></span>
-			    </div>
-			    
-			    
-			    <div class="confirm">
-				    
-			    </div>
-	            
-	            <div class="donate-button"><i class="fa fa-credit-card"></i> Donate Now</div>
-				<div ><i class="fa fa-credit-card"></i> <a href="logout.php">Logout</a></div>
-            </div>
-            
-        </div>
+<html>
+	<head>
+		<style>
+			      .theme-blue {
+        color: #427bb8;
+      }
+      .theme-orange {
+        color: #cc851c;
+      }
+      .theme-green {
+       color: #8ab042;
+      }
+      .theme-grey {
+        color: #666666;
+      }
+      .theme-white {
+        color: #fff;
+      }
+      .theme-background-blue {
+        background-color: #427bb8;
+        color: #fff;
+      }
+      .theme-background-orange {
+        background-color: #cc851c;
+        color: #fff;
+      }
+      .theme-background-green {
+        background-color: #8ab042;
+        color: #fff;
+      }
+      .theme-background-grey {
+        background-color: #666666;
+        color: #fff;
+      }
+      .theme-background-white {
+        background-color: #fff;
+        color: #4c4c4c;
+      }
+      .donate-bar {
+        padding: 32px 23px 28px;
+      }
+      .donate-bar > div:first-child {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: bold;
+        border-right: 1px dotted #2a4f76;
+        margin-top: 19px;
+        font-size: 25px;
+        padding: 0;
+      }
+      .donate-buttons>li>a {
+        font-size: 17px;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: bold;
+        position: relative;
+        display: block;
+        padding: 10px 3px;
+        border-radius: 5px;
+      }
+      .btn-blue-other,
+      .btn-blue {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: bold;
+        background-color: #427bb8;
+        color: #fff;
+        border-radius: 5px;
+        border: 0;
+        padding: 0;
+        width: 75px;
+        height: 37px;
+        margin-top: 8px;
+      }
+      .btn-green {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: bold;
+        background-color: #8ab042;
+        color: #fff;
+        border-radius: 5px;
+        border: 0;
+        padding: 0;
+        width: 114px;
+        height: 37px;
+        margin-top: 8px;
+      }
+      #other-input {
+        display: none;
+      }
+      #other-input input {
+        position: relative;
+        font-weight: bold;
+        background-color: #fff;
+        color: #427bb8;
+        border-radius: 5px;
+        border: 0;
+        border: 5px solid #427bb8;
+        padding: 0 0 3px 15px;
+        width: 75px;
+        height: 37px;
+        margin: 18px 3px 0;
+      }
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+       margin: 0; 
+      }
+      #other-input span {
+        font-family: inherit;
+        font-weight:bold;
+        color: #427bb8;
+        position: absolute;
+        padding: 23px 12px;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .impact {
+        font-size: 1.1em;
+        font-weight: bold;
+        clear: both;
+      }
+      .nav>li>a:hover, .nav>li>a:focus {
+        text-decoration: none;
+        background-color: transparent;
+      }
+      .donate-buttons .active {
+        background-color: #fff;
+        border: 5px solid #427bb8;
+        color: #427bb8;
+      }
+      .donate-buttons:focus {
+      outline: -webkit-focus-ring-color auto 0px;
+      }
+      .donate-buttons li:last-child {
+        font-size: 17px;
+        line-height: 37px;
+        padding-left: 20px;
+        padding-top: 15px;
+      }
+			</style>
+			<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
-    var firstName = "";
-		var lastName = "";
-		var email = "";
-		var dType = "";
-		var receipt = "";
-		var anon = "";
-		var list = "";
-		var amount = "";
-		
-		$('.set-amount').autoGrow(0);
-		
-		/*
-			if(isiPad || jQuery.browser.mobile){
-				$('#team').hide()
-				$('.team-mobile').show();	
-			}else{
-				$('#team').show()
-				$('.team-mobile').hide();
-			}
-		*/
-		
-		//Set & Highlight Donation Amount
-		$(".button").click(function(){
-			$(".button").removeClass("selected");
-			$(this).addClass("selected");
-			
-			$(this).find("input").focus();
-		});
-		
-		//Grow the donation box if they type more than 4 numbers
-		$(".set-amount").keyup(function(){
-			
-			if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
-		       this.value = this.value.replace(/[^0-9\.]/g, '');
-		    }
+	    $(document).ready(function(){
 
-		});
-		
-		
-		$("input").on("change", function(){
-			// $(".donation-box").css("height", "500px");
-			
-			firstName = $("#firstName").val();
-			lastName = $("#lastName").val();
-			email = $("#email").val();
-			
-			if ( $("#one-time").prop( "checked" ) ){
-				dType = "One-Time";
-			}
-			if ( $("#monthly").prop( "checked" ) ){
-				dType = "Monthly";
-			}
+$('#searchbar').focus();
 
-		});
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://raw.githubusercontent.com/jerryluk/jquery.autogrow/master/jquery.autogrow-min.js"></script>
-</body>
+$('#donate-buttons').on('click', '.btn-blue', function(e) {
+  e.preventDefault();
+  $('.active').removeClass('active');
+  $('#other-input').hide().siblings('#other').show();
+  $(this).filter('.btn-blue').addClass("active");
+  var value = $(this).data('impact');
+  $(this).closest('div').find('p').text("" + value);
+  $('#other-input').find('input').val('');  
+});
+  
+$('.btn-green').on('click', function() {
+  var dollar;
+  var input = $('#other-input').find('input').val();
+  if ( !input ) {
+	dollar = $('.active').data('dollars');
+   } else if ( $.trim(input) === '' || isNaN(input)) {
+	// empty space leaves value = 'undefined'. 
+	// Have to fix $.trim(input) == '' above so that it works.
+	console.log('Yes');
+	dollar = "Please enter a number."; 
+  } else {
+	dollar = input;
+  }
+  $('#price').text(""+dollar);
+});
+
+$('#other').on('click', function(e) {
+  e.preventDefault(); 
+  var buttons = $(this).parent('#donate-buttons');
+  buttons.find('.active').removeClass('active');
+  var other = $(this).hide().siblings('#other-input');
+  other.show();
+  other.find('input').focus();
+  var pText = buttons.siblings('p');
+  pText.text("Thank you!");
+  var oValue = other.find('input');
+  oValue.keyup(function() {
+	if ( oValue.val() > 50 ) {
+	  pText.text("Thank you!" + " You\'re about to donate.");
+	} else {
+	  pText.text("Thank you!");
+	}
+  });
+}); 
+
+});
+	</script>
+</head>
+	<body>
+<div class="container theme-background-white main-body">
+      <div class="col-md-12">
+        <div class="row donate-bar">  
+          <div class="col-md-4 theme-blue">
+            Donation Website
+          </div>
+          <div class="col-md-8">
+            <ul class="nav navbar-nav navbar-left donate-buttons" id="donate-buttons">
+              <li><a href="#">
+                <button class="btn-blue active" data-dollars='2500' data-impact="You are about to donate">
+                  ksh2500
+                </button>
+              </a></li>
+              <li><a href="#">
+                <button class="btn-blue" data-dollars='5000' data-impact="You are about to donate">
+                  ksh5000
+                </button>
+              </a></li>
+              <li><a href="#">
+                <button class="btn-blue" data-dollars='10000' data-impact="You are about to donate">
+                  ksh 10000
+                </button>
+              </a></li>
+              <li><a href="#">
+                <button class="btn-blue" data-dollars=' 20000' data-impact="You are about to donate">
+                  ksh 20000
+                </button>
+              </a></li>
+              <li id="other"><a href="#">
+                <button class="btn-blue-other" data-dollars='other' data-impact="Thank you!">
+                  OTHER
+                </button>
+              </a></li>
+              <li id="other-input">
+                <span>KES</span>
+               <input data-impact="That’s great. Thank you!">
+              </li>
+              <li><a href="#">
+                <button class="btn-green" data-toggle="modal" data-target="#myModal">
+                  DONATE
+                </button>
+              </a></li>
+              <li style="display: none;"><a href="#">
+                LEARN MORE<i class="fa fa-chevron-right margin-left"></i>
+              </a></li>
+            </ul>
+            <p class="impact">
+              Money Donation
+            </p>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header well text-center theme-background-blue">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h2>You’re Donating:</h2>
+                    <h1 style="font-size: 5.5em; margin-top: 0;">KES<span id="price"></span></h1>
+                    <em>Thank you!</em>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">  
+                      <section class="col-md-12">
+                        <form method="POST" action="checkout.php">
+                          <fieldset class="col-md-6">
+                            <legend>
+                              Your personal info
+                            </legend>
+                            <label>Your Name</label>
+                            <input type="string" class="form-control">
+                            <label>Your email</label>
+                            <input type="email" class="form-control">
+                            <label>Address</label>
+                            <input type="email" class="form-control">
+                            <label>City, State, Zip Code</label>
+                            <input type="email" class="form-control">
+                          </fieldset>
+                          <fieldset class="col-md-6">
+                            <legend>
+                              Credit Card Information
+                            </legend>
+                            <label for="card-number">Credit Card Number</label>
+                            <input placeholder="1234 5678 9012 3456" pattern="[0-9]*" type="text" class="form-control card-number" id="card-number">
+                            <label for="card-number">Expiration Date</label>
+                            <input placeholder="MM/YY" pattern="[0-9]*" type="text" class="form-control card-expiration" id="card-expiration">
+                            <label for="card-number">CVV Number</label>
+                            <input placeholder="CVV" pattern="[0-9]*" type="text" class="form-control card-cvv" id="card-cvv">
+                            <label for="card-number">Billing Zip Code</label>
+                            <input placeholder="ZIP" pattern="[0-9]*" type="text" class="form-control card-zip" id="card-zip">
+                          </fieldset>
+						  <button type="submit" class="btn-green">CONTINUE</button>
+                        </form>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">BACK</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          </div>
+        </div><!--/.donate-bar-->
+      </div><!-- /.col-md-12 -->

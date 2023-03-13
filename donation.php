@@ -260,26 +260,26 @@ $('#other').on('click', function(e) {
                               Your personal info
                             </legend>
                             <label>Your Name</label>
-                            <input type="string" class="form-control">
+                            <input type="string" name="name" class="form-control">
                             <label>Your email</label>
-                            <input type="email" class="form-control">
+                            <input type="email" name="email" class="form-control">
                             <label>Address</label>
-                            <input type="email" class="form-control">
+                            <input type="string" name="address" class="form-control">
                             <label>City, State, Zip Code</label>
-                            <input type="email" class="form-control">
+                            <input type="string" name="street" class="form-control">
                           </fieldset>
                           <fieldset class="col-md-6">
                             <legend>
                               Credit Card Information
                             </legend>
                             <label for="card-number">Credit Card Number</label>
-                            <input placeholder="1234 5678 9012 3456" pattern="[0-9]*" type="text" class="form-control card-number" id="card-number">
+                            <input placeholder="1234 5678 9012 3456" pattern="[0-9]*" type="text" name="cardno"  class="form-control card-number" id="card-number">
                             <label for="card-number">Expiration Date</label>
-                            <input placeholder="MM/YY" pattern="[0-9]*" type="text" class="form-control card-expiration" id="card-expiration">
+                            <input placeholder="MM/YY" pattern="[0-9]*" type="text" name="expiration" class="form-control card-expiration" id="card-expiration">
                             <label for="card-number">CVV Number</label>
-                            <input placeholder="CVV" pattern="[0-9]*" type="text" class="form-control card-cvv" id="card-cvv">
+                            <input placeholder="CVV" pattern="[0-9]*" type="text" name="cvv" class="form-control card-cvv" id="card-cvv">
                             <label for="card-number">Billing Zip Code</label>
-                            <input placeholder="ZIP" pattern="[0-9]*" type="text" class="form-control card-zip" id="card-zip">
+                            <input placeholder="ZIP" pattern="[0-9]*" type="text" name="bzp" class="form-control card-zip" id="card-zip">
                           </fieldset>
 						  <button type="submit" class="btn-green">CONTINUE</button>
                         </form>

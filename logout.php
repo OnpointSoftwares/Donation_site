@@ -1,4 +1,10 @@
 <?php
 session_destroy();
-unset($_SESSION['Login']);
+if(isset($_SESSION['Login']))
+{
+
+}
+else{
+    header("location:index.php");
+}
 ?>

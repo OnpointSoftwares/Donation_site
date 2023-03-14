@@ -29,7 +29,7 @@
             <a href="contact.html">CONTACT</a>
             <a href="login.php">Donor Login</a>
             <a href="projects.php">Projects</a>
-            <a href="admin.php">Admin Login</a>
+            <a href="adminlogin.php">Admin Login</a>
         </div>
     </nav>
     <!-- --------------------------------------------MAIN----------------------------------------------------------->

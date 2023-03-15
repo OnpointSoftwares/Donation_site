@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(isset($_SESSION['active']))
+{
+
+}
+else{
+  header("location:login.php");
+}
+?>
 <html>
 	<head>
 		<style>
@@ -196,7 +206,7 @@ $('#other').on('click', function(e) {
       <div class="col-md-12">
         <div class="row donate-bar">  
           <div class="col-md-4 theme-blue">
-            Donation Website
+            Donation Website<br><a href="logout.php">Logout</a>
           </div>
           <div class="col-md-8">
             <ul class="nav navbar-nav navbar-left donate-buttons" id="donate-buttons">

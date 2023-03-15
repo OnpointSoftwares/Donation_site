@@ -1,5 +1,12 @@
 <?php
-//include("sessionAdmin.php");
+session_start();
+if(isset($_SESSION['active']))
+{
+
+}
+else{
+  header("location:login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

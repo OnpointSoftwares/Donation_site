@@ -31,10 +31,15 @@ session_start();
 <div class="container" style="background-image:url('images/back.jpg'); margin-top: 10em;width: 100%">
     <form action="" method="post" name="Login_Form" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUsername" >Login as</label>
+        <select name="role" class="form-control">
+            <option value="admin">Admin</option>
+            <option value="donor">Donor</option>
+        </select>
         <label for="inputUsername" class="sr-only">Username</label>
         <input name="Username" type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input name="Password" type="password" maxlength="6" minlength="6" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input name="Password" type="password" maxlength="6" minlength="4" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
@@ -43,7 +48,7 @@ session_start();
         <button name="Submit" style='background-color:blue;' value="Login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 <a style='background-image: linear-gradient(blue,yellow);' class="btn btn-lg btn-primary btn-block" href="Registration.php">Register here</a>
         <?php
-
+echo $_SESSION['login'];
         /* Check if login form has been submitted */
         if(isset($_POST['Submit'])){
 
@@ -52,23 +57,24 @@ session_start();
             $conn=mysqli_connect('localhost','root','','Donation_site');
 $username=$_POST['Username'];
 $password=$_POST['Password'];
-$sql="select * from login where username='$username' and password='$password' and role='donor'";
+$role=$_POST['role'];
+$sql="select * from login where username='$username' and password='$password' and role='$role'";
 $query=mysqli_query($conn,$sql);
 $count=mysqli_num_rows($query);
 $row1=mysqli_fetch_assoc($query);
 $level=$row1['Level'];
             /* Check if form's username and password matches */
             if($count==1) {
+                session_start();
                 /* Success: Set session variables and redirect to protected page */
                 $_SESSION['login'] = $username;
-
-                $_SESSION['Active'] = true;
-                if($level==0)
+                $_SESSION['active'] = true;
+                if($role=='donor')
                 {
                 header("location:donation.php");
                 exit;
 }
-else if($level==1)
+else if($role=='admin')
 {
     header("location:admin.php");
                 exit;

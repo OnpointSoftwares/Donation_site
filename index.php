@@ -27,9 +27,8 @@
             <a href="about.html">ABOUT US</a>
             <a href="donate.html">DONATE</a>
             <a href="contact.html">CONTACT</a>
-            <a href="login.php">Donor Login</a>
+            <a href="login.php">Login</a>
             <a href="projects.php">Projects</a>
-            <a href="adminlogin.php">Admin Login</a>
         </div>
     </nav>
     <!-- --------------------------------------------MAIN----------------------------------------------------------->

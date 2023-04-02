@@ -305,6 +305,9 @@ $('#other').on('click', function(e) {
 						  <button type="button" onclick="pay2()" class="btn-green">CONTINUE</button>
               <button type="button" onclick="pay()"class="btn-green">Use Mpesa</button>
                         </form>
+                        <div id="content1">
+                          hijskj
+                          </div>
                       </section>
                       <script>
                         function pay()
@@ -321,6 +324,7 @@ $('#other').on('click', function(e) {
                           data:{name:name,address:address,email:email,street:street,phone:phone,amount:amnt},
                           success: function(data)
                           {
+                            $('#content1').html(data)
                             alert('Donation Successful.Enter your M-Pesa pin to complete the transaction.Check your email for confirmation.'); // show response from the php script.
                           }
                         });   

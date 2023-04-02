@@ -70,7 +70,7 @@ $sql="insert into donations(Name,Email,Address,City,phone,TransactionCode,Amount
  $query=mysqli_query($conn,$sql);
  if($query)
  {
-    
+    echo $email;
 $mail = new PHPMailer(true);
 
 try {
@@ -78,8 +78,8 @@ try {
 	$mail->isSMTP();											
 	$mail->Host	 = 'smtp.gmail.com;';					
 	$mail->SMTPAuth = true;							
-	$mail->Username = 'winwritesofficial@gmail.com';				
-	$mail->Password = 'capdwmpqvrnwqnxc';						
+	$mail->Username = 'vincentbettoh@gmail.com';				
+	$mail->Password = 'bgqfhjzyghscmxob';						
 	$mail->SMTPSecure = 'tls';							
 	$mail->Port	 = 587;
 	$mail->setFrom("antoninan@kabarak.ac.ke", "Donation Site");		
